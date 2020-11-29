@@ -34,6 +34,7 @@ if ( ( defined( 'TESTS_RUNNING' ) && TESTS_RUNNING ) || is_plugin_active( 'membe
 }
 
 register_activation_hook( __FILE__, 'gravixar_mepr_cancel_sub_activate' );
+
 function gravixar_mepr_cancel_sub_activate() {
 	gravixar_create_custom_cancellation_page( 'mepr-cancel-transaction' );
 }
@@ -56,11 +57,8 @@ function gravixar_create_custom_cancellation_page( $page_name ) {
 	}
 }
 
-// End Plugin Activation
-
-//Start URL routing
-
 add_filter( 'page_template', 'catch_mypath' );
+
 function catch_mypath( $page_template ) {
 	if ( is_page( 'mepr-cancel-transaction' ) ) {
 		$page_template = __DIR__ . '/mepr-cancel-transaction.php';
